@@ -32,17 +32,16 @@ public class PokerV2 {
 			players[i%4][i/4] = poker[i];
 		}
 		
+		char[] suits2 = {'\u2660','\u2665','\u2666','\u2663'};
 		String[] suits = {"黑桃","紅心","方塊","梅花",};
 		String[] values = {"A ","2 ","3 ","4 ","5 ","6 ","7 ",
 				"8 ","9 ","10","J ","Q ","K ",};
 		for (int[] player : players) {
 			for (int card : player) {
-				System.out.print(suits[card/13]+values[card%13] + " ");
+				System.out.print(suits2[card/13]+values[card%13] + " ");
 			}
 			System.out.println();
 		}
-		
-		
 		
 	}
 
