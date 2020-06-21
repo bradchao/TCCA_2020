@@ -28,8 +28,12 @@ public class PokerV2 {
 		//System.out.println(System.currentTimeMillis()-start);
 		
 		int[][] players = new int[4][13];
-		for (int i=0; i<52; i++) {
+		for (int i=0; i<poker.length; i++) {
 			players[i%4][i/4] = poker[i];
+		}
+		
+		for (int card : players[1]) {
+			System.out.println(card);
 		}
 		
 		
