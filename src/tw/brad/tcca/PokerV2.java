@@ -25,7 +25,14 @@ public class PokerV2 {
 
 		}
 		System.out.println("===");
-		System.out.println(System.currentTimeMillis()-start);
+		//System.out.println(System.currentTimeMillis()-start);
+		
+		int[][] players = new int[4][13];
+		for (int i=0; i<52; i++) {
+			players[i%4][i/4] = poker[i];
+		}
+		
+		
 		
 	}
 
