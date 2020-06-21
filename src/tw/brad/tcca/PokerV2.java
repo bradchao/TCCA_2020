@@ -21,7 +21,7 @@ public class PokerV2 {
 			}while (isRepeat);
 
 			poker[i] = temp;
-			System.out.println(poker[i]);
+			//System.out.println(poker[i]);
 
 		}
 		System.out.println("===");
@@ -32,8 +32,11 @@ public class PokerV2 {
 			players[i%4][i/4] = poker[i];
 		}
 		
-		for (int card : players[1]) {
-			System.out.println(card);
+		for (int[] player : players) {
+			for (int card : player) {
+				System.out.print(card + "  ");
+			}
+			System.out.println();
 		}
 		
 		
