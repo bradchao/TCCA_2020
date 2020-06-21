@@ -1,12 +1,12 @@
 package tw.brad.tcca;
 
-public class CubeV2 {
+public class CubeV3 {
 
 	public static void main(String[] args) {
 		int[] p = new int[7];	//p[0]=0, p[1]=1,......p[6]=0
-		for (int i = 0; i < 100; i++) {
-			int point = (int) (Math.random() * 6) + 1;	// 1 - 6
-			p[point]++;
+		for (int i = 0; i < 10000000; i++) {
+			int point = (int) (Math.random() * 9) + 1;	// 1 - 6
+			p[point>6?point-3:point]++;
 		}
 		
 		for (int i=1; i<=6; i++) {
