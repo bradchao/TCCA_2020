@@ -12,6 +12,7 @@ public class PokerV4 {
 		int[] newpoker = new int[52];
 		for (int i=0; i<52; i++) {
 			newpoker[i] = poker.get(i);
+			
 		}
 		
 	}
