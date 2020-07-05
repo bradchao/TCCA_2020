@@ -8,6 +8,7 @@ public class PlayScooter {
 		Scooter s1 = new Scooter();
 		s1.upSpeed();
 		s1.upSpeed();
+		s1.downSpeed();
 		System.out.println(s1.getSpeed());
 	}
 

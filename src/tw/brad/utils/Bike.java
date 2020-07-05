@@ -1,7 +1,7 @@
 package tw.brad.utils;
 
 public class Bike {
-	private double speed;
+	protected double speed;
 	private String name;
 	
 	public Bike() {
