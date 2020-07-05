@@ -19,6 +19,9 @@ public class PlayString {
 		String s6 = new String("Brad");
 		System.out.println(s5 == s6);
 		
+		String test1 = "abcsefg";
+		System.out.println(test1.indexOf('x'));
+		
 		
 		
 	}

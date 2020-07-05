@@ -6,12 +6,12 @@ public class GuessNumber {
 
 	public static void main(String[] args) {
 		// 1. creaet answer
-		String answer = createAnswer(5);
+		String answer = createAnswer(3);
 		System.out.println(answer);
 		
 		// 2. User input
 		Scanner scanner = new Scanner(System.in);
-		for (int i=0; i<3; i++) {
+		for (int i=0; i<10; i++) {
 			String guess = scanner.next();
 			// 3. check => ?A?B
 			String result = checkAB(answer, guess);
@@ -26,7 +26,7 @@ public class GuessNumber {
 		for (int i=0; i<g.length(); i++) {
 			if (g.charAt(i) == a.charAt(i)) {
 				A++;
-			}else if(g中第i馬是否存在於a中) {
+			}else if(a.indexOf(g.charAt(i)) != -1) {
 				B++;
 			}
 		}
