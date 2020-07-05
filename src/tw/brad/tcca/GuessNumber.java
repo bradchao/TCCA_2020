@@ -10,15 +10,30 @@ public class GuessNumber {
 		System.out.println(answer);
 		
 		// 2. User input
-//		Scanner scanner = new Scanner(System.in);
-//		for (int i=0; i<3; i++) {
-//			String guess = scanner.next();
-//			// 3. check => ?A?B
-//			String result = "1A2B";
-//			System.out.println(result);
-//		}
+		Scanner scanner = new Scanner(System.in);
+		for (int i=0; i<3; i++) {
+			String guess = scanner.next();
+			// 3. check => ?A?B
+			String result = checkAB(answer, guess);
+			System.out.println(result);
+		}
 		
 	}
+
+	static String checkAB(String a, String g) {
+		int A, B; A = B = 0;
+		
+		for (int i=0; i<g.length(); i++) {
+			if (g.charAt(i) == a.charAt(i)) {
+				A++;
+			}else if(g中第i馬是否存在於a中) {
+				B++;
+			}
+		}
+		
+		return String.format("%dA%dB", A, B);
+	}
+	
 	
 	static String createAnswer(int d) {
 		int[] poker = new int[10];
