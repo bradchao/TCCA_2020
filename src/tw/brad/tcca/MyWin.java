@@ -1,11 +1,20 @@
 package tw.brad.tcca;
 
+import java.awt.FlowLayout;
+
+import javax.swing.JButton;
 import javax.swing.JFrame;
 
 public class MyWin extends JFrame{
+	private JButton b1;
 
 	public MyWin() {
-		//System.out.println("OK");
+		b1 = new JButton("Click");
+		
+		FlowLayout flowLayout = new FlowLayout();
+		setLayout(flowLayout);
+		
+		add(b1);
 		
 		setSize(640, 480);
 		setVisible(true);
