@@ -10,6 +10,10 @@ public class PlayScooter {
 		s1.upSpeed();
 		s1.downSpeed();
 		System.out.println(s1.getSpeed());
+		s1.setGear(4);
+		s1.upSpeed();
+		s1.upSpeed();
+		System.out.println(s1.getSpeed());
 	}
 
 }
