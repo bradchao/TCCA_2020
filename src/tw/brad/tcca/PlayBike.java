@@ -26,7 +26,7 @@ public class PlayBike {
 		
 		
 	}
-	
+	// function => method, f(x) = 2X + 1
 	static double upSpeed(double speed) {
 		speed = speed < 1 ? 1 : speed*1.2;
 		return speed;

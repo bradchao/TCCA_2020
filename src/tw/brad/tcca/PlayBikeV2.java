@@ -8,6 +8,11 @@ public class PlayBikeV2 {
 		Bike myBike;
 		myBike = new Bike();
 		System.out.println(myBike.speed);
+		myBike.upSpeed();
+		myBike.upSpeed();
+		myBike.upSpeed();
+		myBike.upSpeed();
+		System.out.println(myBike.speed);
 		
 	}
 
