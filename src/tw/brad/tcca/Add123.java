@@ -13,10 +13,16 @@ public class Add123 {
 		int i = 1;
 		
 		while (i<=n) {
-			sum = sum + i;
-			i++;
+			sum += i++;
 		}
 		
+		System.out.printf("1 + 2 + ... + %d = %d\n", n, sum);
+		System.out.println("===");
+		
+		sum = 0; i = 1;
+		for (;i<=n;) {
+			sum += i++;
+		}
 		System.out.printf("1 + 2 + ... + %d = %d", n, sum);
 		
 		
