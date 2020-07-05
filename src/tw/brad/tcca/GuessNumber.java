@@ -7,15 +7,28 @@ public class GuessNumber {
 	public static void main(String[] args) {
 		// 1. creaet answer
 		String answer = createAnswer(3);
-		System.out.println(answer);
+		//System.out.println(answer);
 		
 		// 2. User input
+		boolean isWinner = false;
 		Scanner scanner = new Scanner(System.in);
 		for (int i=0; i<10; i++) {
+			System.out.printf("%d Guess = ", (i+1));
 			String guess = scanner.next();
 			// 3. check => ?A?B
 			String result = checkAB(answer, guess);
-			System.out.println(result);
+			System.out.printf("%s => %s\n", guess, result);
+			
+			if (result.equals("3A0B")) {
+				isWinner = true;
+				break;
+			}
+		}
+		
+		if (isWinner) {
+			System.out.println("WINNER!");
+		}else {
+			System.out.println("Answer = " + answer);
 		}
 		
 	}
