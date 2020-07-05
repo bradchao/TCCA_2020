@@ -6,14 +6,25 @@ public class PlayBike {
 		String myBikeName = "Brad";
 		double myBikeSpeed = 0.0;
 		
+		String urBikeName = "Andy";
+		double urBikeSpeed = 0.0;
+		
 		myBikeSpeed = upSpeed(myBikeSpeed);
 		myBikeSpeed = upSpeed(myBikeSpeed);
 		myBikeSpeed = upSpeed(myBikeSpeed);
 		myBikeSpeed = upSpeed(myBikeSpeed);
-
-		System.out.printf("%s's bike = %f\n", myBikeName, myBikeSpeed);
 		myBikeSpeed = downSpeed(myBikeSpeed);
 		System.out.printf("%s's bike = %f\n", myBikeName, myBikeSpeed);
+		
+		urBikeSpeed = upSpeed(urBikeSpeed);
+		urBikeSpeed = downSpeed(urBikeSpeed);
+		urBikeSpeed = upSpeed(urBikeSpeed);
+		urBikeSpeed = downSpeed(urBikeSpeed);
+		urBikeSpeed = downSpeed(urBikeSpeed);
+		System.out.printf("%s's bike = %f\n", urBikeName, urBikeSpeed);
+		
+		
+		
 	}
 	
 	static double upSpeed(double speed) {
