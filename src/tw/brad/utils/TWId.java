@@ -1,11 +1,37 @@
 package tw.brad.utils;
 
 public class TWId {
-
+	private String id;
+	private static String letters = "ABCDEFGHJKLMNPQRSTUVXYWZIO";
+	
+	public TWId() {
+		this((int)(Math.random()*2)==0);
+	}
+	public TWId(boolean isMale) {
+		this(isMale, (int)(Math.random()*26));
+	}
+	public TWId(int area) {
+		this((int)(Math.random()*2)==0,area);
+	}
+	public TWId(boolean isMale, int area) {
+		StringBuffer sb = new StringBuffer();
+		sb.append(letters.charAt(area));
+		sb.append(isMale?"1":"2");
+		for (int i=3; i<=9; i++) sb.append((int)(Math.random()*10));
+		
+		String first9 = sb.toString();
+		for (int i=0; i<10; i++) {
+			if (isRightID(first9 + i)) {
+				id = first9 + i;
+				break;
+			}
+		}
+	}
+	
+	public String getId() {return id;}
 	
 	public static boolean isRightID(String id) {
 		boolean isRight = false;
-		String letters = "ABCDEFGHJKLMNPQRSTUVXYWZIO";
 		if (id.matches("[A-Z][12][0-9]{8}")) {
 			char c1 = id.charAt(0);
 			int n12 = letters.indexOf(c1)+10;
