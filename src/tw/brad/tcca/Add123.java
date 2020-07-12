@@ -26,6 +26,7 @@ public class Add123 {
 		System.out.printf("1 + 2 + ... + %d = %d", n, sum);
 		
 		
+		
 	}
 
 }
