@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -21,6 +22,14 @@ public class GuessNumberV2 extends JFrame {
 		log = new JTextArea();
 		
 		setLayout(new BorderLayout());
+		add(log, BorderLayout.CENTER);
+		
+		JPanel topLine = new JPanel(new BorderLayout());
+		add(topLine, BorderLayout.NORTH);
+		
+		topLine.add(guess, BorderLayout.EAST);
+		topLine.add(input, BorderLayout.CENTER);
+		
 		
 		setSize(640, 480);
 		setVisible(true);
