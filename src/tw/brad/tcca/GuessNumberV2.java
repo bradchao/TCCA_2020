@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -16,6 +17,7 @@ public class GuessNumberV2 extends JFrame
 	private JTextField input;
 	private JTextArea log;
 	private String answer;
+	private int counter;	// 0
 	
 	public GuessNumberV2(String title) {
 		// super()
@@ -46,6 +48,10 @@ public class GuessNumberV2 extends JFrame
 
 	private void initGame() {
 		answer = createAnswer(3);
+		System.out.println(answer);
+		counter = 0;
+		log.setText("");
+		JOptionPane.showMessageDialog(this, "開新局");
 	}
 	
 	public static void main(String[] args) {
@@ -54,9 +60,23 @@ public class GuessNumberV2 extends JFrame
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		counter++;
 		String strInput = input.getText();
 		String result = checkAB(answer, strInput);
-		log.append(String.format("%s => %s\n", strInput, result));
+		String mesg = String.format("%d. %s => %s\n", counter,strInput, result); 
+		JOptionPane.showMessageDialog(this, mesg);
+		log.append(mesg);
+		input.setText("");
+		
+		if (result.equals("3A0B")) {
+			// WINNER
+			JOptionPane.showMessageDialog(this, "WINNER");
+			initGame();
+		}else if(counter == 10) {
+			// LOSER
+			JOptionPane.showMessageDialog(this, "LOSER:" + answer);
+			initGame();
+		}
 	}
 
 	static String createAnswer(int d) {
