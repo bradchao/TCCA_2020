@@ -4,7 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -51,11 +53,22 @@ public class BradEditor extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 
+	private File openFile = null;
+	
 	private void openFile() {
 		JFileChooser jfc = new JFileChooser();
 		if (jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-			File file = jfc.getSelectedFile();
-			System.out.println(file.getAbsolutePath());
+			openFile = jfc.getSelectedFile();
+			try {
+				BufferedReader reader = new BufferedReader(new FileReader(openFile));
+				String line;
+				while ( (line = reader.readLine()) != null) {
+					editor.append(line + "\n");
+				}
+				reader.close();
+			}catch(Exception e) {
+				
+			}
 		}
 	}
 
