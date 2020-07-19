@@ -8,5 +8,12 @@ public class MyFileTest {
 		for (File root : roots) {
 			System.out.println(root.getAbsolutePath());
 		}
+		
+		File test1 = new File("C:/test1");
+		if (test1.exists()) {
+			System.out.println("OK");
+		}else {
+			System.out.println("XX");
+		}
 	}
 }
