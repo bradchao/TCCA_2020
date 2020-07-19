@@ -23,7 +23,7 @@ public class GuessNumberV2 extends JFrame
 		// super()
 		super(title);
 		
-		guess = new JButton("猜");
+		guess = new JButton("猜猜猜");
 		input = new JTextField();
 		log = new JTextArea();
 		
