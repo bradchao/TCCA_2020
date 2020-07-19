@@ -32,12 +32,16 @@ public class BradEditor extends JFrame {
 		open.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("OK");
+				openFile();
 			}
 		});
 		
-		
-		
+		save.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				saveFile();
+			}
+		});
 		
 		
 		setSize(640, 480);
@@ -45,6 +49,14 @@ public class BradEditor extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 
+	private void openFile() {
+		
+	}
+
+	private void saveFile() {
+		
+	}
+	
 	public static void main(String[] args) {
 		new BradEditor();
 	}
