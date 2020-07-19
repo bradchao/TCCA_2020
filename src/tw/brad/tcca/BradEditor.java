@@ -2,16 +2,21 @@ package tw.brad.tcca;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 public class BradEditor extends JFrame {
@@ -31,7 +36,12 @@ public class BradEditor extends JFrame {
 		add(top, BorderLayout.NORTH);
 		
 		editor = new JTextArea();
-		add(editor, BorderLayout.CENTER);
+		editor.setFont(new Font("", Font.PLAIN, 18));
+		editor.setTabSize(4);
+		
+		JScrollPane jsp = new JScrollPane(editor);
+		
+		add(jsp, BorderLayout.CENTER);
 		
 		open.addActionListener(new ActionListener() {
 			@Override
@@ -47,10 +57,25 @@ public class BradEditor extends JFrame {
 			}
 		});
 		
+		saveAs.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				saveAsFile();
+			}
+		});
 		
 		setSize(640, 480);
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+	}
+
+	private void saveAsFile() {
+		JFileChooser jfc = new JFileChooser();
+		if (jfc.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
+			openFile = jfc.getSelectedFile();
+			saveFile();
+		}
 	}
 
 	private File openFile = null;
@@ -73,7 +98,17 @@ public class BradEditor extends JFrame {
 	}
 
 	private void saveFile() {
+		if (openFile == null) return;
 		
+		try {
+			BufferedWriter bWriter = new BufferedWriter(new FileWriter(openFile));
+			bWriter.write(editor.getText());
+			bWriter.flush();
+			bWriter.close();
+			JOptionPane.showMessageDialog(this, "Save OK");
+		}catch(Exception e) {
+			System.out.println(e.toString());
+		}
 	}
 	
 	public static void main(String[] args) {
