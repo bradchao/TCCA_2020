@@ -4,8 +4,10 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -50,7 +52,11 @@ public class BradEditor extends JFrame {
 	}
 
 	private void openFile() {
-		
+		JFileChooser jfc = new JFileChooser();
+		if (jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+			File file = jfc.getSelectedFile();
+			System.out.println(file.getAbsolutePath());
+		}
 	}
 
 	private void saveFile() {
