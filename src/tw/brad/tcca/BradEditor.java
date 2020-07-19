@@ -2,6 +2,8 @@ package tw.brad.tcca;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -27,7 +29,12 @@ public class BradEditor extends JFrame {
 		editor = new JTextArea();
 		add(editor, BorderLayout.CENTER);
 		
-		
+		open.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("OK");
+			}
+		});
 		
 		
 		
