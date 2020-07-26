@@ -13,10 +13,10 @@ import javax.swing.JPanel;
 
 public class MyPainter extends JPanel{
 	private MyMouseListener myMouseListener;
-	private LinkedList<HashMap<String, Integer>> line;
+	private LinkedList<LinkedList<HashMap<String, Integer>>> lines;
 	
 	public MyPainter() {
-		line = new LinkedList<>();
+		lines = new LinkedList<>();
 		myMouseListener = new MyMouseListener();
 		addMouseListener(myMouseListener);
 		addMouseMotionListener(myMouseListener);
@@ -29,21 +29,28 @@ public class MyPainter extends JPanel{
 		g2d.setColor(Color.BLUE);
 		g2d.setStroke(new BasicStroke(4));
 		
-		for (int i=1; i<line.size(); i++) {
-			HashMap<String, Integer> p0 = line.get(i-1);
-			HashMap<String, Integer> p1 = line.get(i);
-			g2d.drawLine(p0.get("x"), p0.get("y"), p1.get("x"), p1.get("y"));
+		for (LinkedList<HashMap<String, Integer>> line: lines) {
+			for (int i=1; i<line.size(); i++) {
+				HashMap<String, Integer> p0 = line.get(i-1);
+				HashMap<String, Integer> p1 = line.get(i);
+				g2d.drawLine(p0.get("x"), p0.get("y"), p1.get("x"), p1.get("y"));
+			}
 		}
+		
 	}
 	
 	private class MyMouseListener extends MouseAdapter {
 		@Override
 		public void mousePressed(MouseEvent e) {
 			super.mousePressed(e);
+			LinkedList<HashMap<String, Integer>> line = new LinkedList<>();
+			
 			HashMap<String, Integer> point = new HashMap<>();
 			point.put("x", e.getX());
 			point.put("y", e.getY());
 			line.add(point);
+			
+			lines.add(line);
 			repaint();
 		}
 		
@@ -53,7 +60,8 @@ public class MyPainter extends JPanel{
 			HashMap<String, Integer> point = new HashMap<>();
 			point.put("x", e.getX());
 			point.put("y", e.getY());
-			line.add(point);
+			lines.getLast().add(point);
+			
 			repaint();
 		}
 	}
