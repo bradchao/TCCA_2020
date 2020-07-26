@@ -7,7 +7,7 @@ import java.io.FileInputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class TCPServer {
+public class TCPServer2 {
 
 	public static void main(String[] args) {
 		while (true) {
