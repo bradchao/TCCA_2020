@@ -5,6 +5,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import org.json.JSONArray;
+
 import com.sun.net.ssl.HttpsURLConnection;
 
 public class HttpTest3 {
@@ -19,14 +21,25 @@ public class HttpTest3 {
 			String line; StringBuffer sb = new StringBuffer();
 			while ( (line = reader.readLine()) != null) {
 				sb.append(line);
-				System.out.println(line);
+				//System.out.println(line);
 			}
 			reader.close();
-			System.out.println("len:" + sb.length());
+			//System.out.println("len:" + sb.length());
+			parseJSON(sb.toString());
 		}catch(Exception e) {
 			System.out.println(e.toString());
 		}
 	
 	}
 	// https://github.com/stleary/JSON-java
+	
+	static void parseJSON(String json) {
+		try {
+			JSONArray root = new JSONArray(json);
+			System.out.println("count: " + root.length());
+		}catch(Exception e) {
+			System.out.println(e.toString());
+		}
+	}
+	
 }
