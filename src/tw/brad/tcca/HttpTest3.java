@@ -6,6 +6,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import com.sun.net.ssl.HttpsURLConnection;
 
@@ -36,7 +37,12 @@ public class HttpTest3 {
 	static void parseJSON(String json) {
 		try {
 			JSONArray root = new JSONArray(json);
-			System.out.println("count: " + root.length());
+			for (int i=0; i<root.length(); i++) {
+				JSONObject row = root.getJSONObject(i);
+				String name = row.getString("Name");
+				String tel = row.getString("Tel");
+				System.out.println(name + ":" + tel);
+			}
 		}catch(Exception e) {
 			System.out.println(e.toString());
 		}
