@@ -8,6 +8,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.LinkedList;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
@@ -15,11 +20,12 @@ import javax.swing.JColorChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import tw.brad.utils.MyLine;
 import tw.brad.utils.MyPainterV2;
 
 public class MySign extends JFrame {
 	private MyPainterV2 myPainter;
-	private JButton clear, undo, redo, chColor, save;
+	private JButton clear, undo, redo, chColor, save, saveObj, loadObj;
 	
 	public MySign() {
 		super("MySign");
@@ -33,9 +39,11 @@ public class MySign extends JFrame {
 		redo = new JButton("Redo");
 		chColor = new JButton("Color");
 		save = new JButton("Save");
+		saveObj = new JButton("Save Obj.");
+		loadObj = new JButton("Load Obj.");
 		JPanel topLine = new JPanel(new FlowLayout());
 		topLine.add(clear);topLine.add(undo);topLine.add(redo);topLine.add(chColor);
-		topLine.add(save);
+		topLine.add(save);topLine.add(saveObj);topLine.add(loadObj);
 		add(topLine, BorderLayout.NORTH);
 		
 		setSize(640, 480);
@@ -79,6 +87,18 @@ public class MySign extends JFrame {
 				saveImage();
 			}
 		});
+		saveObj.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				saveObj();
+			}
+		});
+		loadObj.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				loadObj();
+			}
+		});
 	}
 	
 	private void changeColor() {
@@ -88,7 +108,7 @@ public class MySign extends JFrame {
 		}
 	}
 	
-	public void saveImage() {
+	private void saveImage() {
 		BufferedImage im = new BufferedImage(myPainter.getWidth(), myPainter.getHeight(), BufferedImage.TYPE_INT_ARGB);
 		myPainter.paint(im.getGraphics());
 		try {
@@ -98,6 +118,31 @@ public class MySign extends JFrame {
 		}
 
 	}
+	
+	private void saveObj() {
+		try {
+			ObjectOutputStream oout = new ObjectOutputStream(
+					new FileOutputStream("dir1/brad.object"));
+			oout.writeObject(myPainter.getLines());
+			oout.flush();
+			oout.close();
+			System.out.println("save ok");
+		}catch(Exception e) {
+			System.out.println(e.toString());
+		}
+	}
+	private void loadObj() {
+		try {
+			ObjectInputStream oin = new ObjectInputStream(
+					new FileInputStream("dir1/brad.object"));
+			LinkedList<MyLine> lines = (LinkedList<MyLine>)(oin.readObject());
+			oin.close();
+			myPainter.setLines(lines);
+		}catch(Exception e) {
+			System.out.println(e.toString());
+		}
+	}
+	
 	
 	public static void main(String[] args) {
 		new MySign();
