@@ -18,7 +18,7 @@ public class MySQLTest1 {
 			// jdbc:sqlserver://<server>:<port>;databaseName=AdventureWorks;user=<user>;password=<password>
 			// jdbc:mysql://localhost:3306/GUESTBOOK?user=caterpillar&password=123456
 			Connection conn = DriverManager.getConnection(
-					"jdbc:mysql://localhost:8889/tcca?user=root&password=root");
+					"jdbc:mysql://localhost:8889/tcca?user=root&password=root&serverTimezone=Asia/Taipei");
 			System.out.println("OK");
 		} catch (SQLException e) {
 			System.out.println(e.toString());
