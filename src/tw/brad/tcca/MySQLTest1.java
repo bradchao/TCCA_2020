@@ -3,6 +3,7 @@ package tw.brad.tcca;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
@@ -48,13 +49,26 @@ public class MySQLTest1 {
 //			pstmt.setInt(1, 3);;
 //			pstmt.executeUpdate();
 
-			PreparedStatement pstmt = conn.prepareStatement(
-					"update cust set cname=?, tel=? where id = ?");
-			pstmt.setString(1, "AMY");
-			pstmt.setString(2, "1234");
-			pstmt.setInt(3, 2);
-			pstmt.executeUpdate();
+//			PreparedStatement pstmt = conn.prepareStatement(
+//					"update cust set cname=?, tel=? where id = ?");
+//			pstmt.setString(1, "AMY");
+//			pstmt.setString(2, "1234");
+//			pstmt.setInt(3, 2);
+//			pstmt.executeUpdate();
 
+
+			PreparedStatement pstmt = conn.prepareStatement(
+					"select * from cust");
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				String id = rs.getString("id");
+				String cname = rs.getString("cname");
+				String tel = rs.getString("tel");
+				String birthday = rs.getString("birthday");
+				
+				System.out.println(String.format("%s:%s:%s:%s", id,cname,tel,birthday));
+				
+			}
 			
 			System.out.println("OK");
 		} catch (SQLException e) {
