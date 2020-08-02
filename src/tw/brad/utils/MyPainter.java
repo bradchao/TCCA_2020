@@ -13,10 +13,11 @@ import javax.swing.JPanel;
 
 public class MyPainter extends JPanel{
 	private MyMouseListener myMouseListener;
-	private LinkedList<LinkedList<HashMap<String, Integer>>> lines;
+	private LinkedList<LinkedList<HashMap<String, Integer>>> lines, recycler;
 	
 	public MyPainter() {
 		lines = new LinkedList<>();
+		recycler = new LinkedList<>();
 		myMouseListener = new MyMouseListener();
 		addMouseListener(myMouseListener);
 		addMouseMotionListener(myMouseListener);
@@ -52,6 +53,8 @@ public class MyPainter extends JPanel{
 			
 			lines.add(line);
 			repaint();
+			
+			recycler.clear();
 		}
 		
 		@Override
@@ -72,8 +75,17 @@ public class MyPainter extends JPanel{
 	}
 	
 	public void undo() {
-		lines.removeLast();
-		repaint();
+		if (lines.size()>0) {
+			recycler.add(lines.removeLast());
+			repaint();
+		}
+	}
+	
+	public void redo() {
+		if (recycler.size()>0) {
+			lines.add(recycler.removeLast());
+			repaint();
+		}
 	}
 	
 }

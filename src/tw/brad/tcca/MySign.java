@@ -46,7 +46,7 @@ public class MySign extends JFrame {
 		redo.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				myPainter.redo();
 			}
 		});
 		
