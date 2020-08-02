@@ -7,6 +7,9 @@ public class MyThreadTest {
 		MyThread1 mt2 = new MyThread1("B");
 		mt1.start();
 		mt2.start();
+		mt1.run();
+		//mt1.start();
+		
 	}
 
 }
