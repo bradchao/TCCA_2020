@@ -66,4 +66,9 @@ public class MyPainter extends JPanel{
 		}
 	}
 
+	public void clear() {
+		lines.clear();
+		repaint();
+	}
+	
 }
