@@ -39,7 +39,7 @@ public class MySign extends JFrame {
 		undo.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				myPainter.undo();
 			}
 		});
 		

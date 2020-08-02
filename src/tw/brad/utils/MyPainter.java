@@ -71,4 +71,9 @@ public class MyPainter extends JPanel{
 		repaint();
 	}
 	
+	public void undo() {
+		lines.removeLast();
+		repaint();
+	}
+	
 }
