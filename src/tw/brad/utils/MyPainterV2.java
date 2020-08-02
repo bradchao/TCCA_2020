@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 
 public class MyPainterV2 extends JPanel{
 	private MyMouseListener myMouseListener;
-	private LinkedList<LinkedList<HashMap<String, Integer>>> lines, recycler;
+	private LinkedList<MyLine> lines, recycler;
 	private Color nowColor;
 	
 	public MyPainterV2() {
@@ -30,14 +30,14 @@ public class MyPainterV2 extends JPanel{
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D)g;
-		g2d.setColor(nowColor);
 		g2d.setStroke(new BasicStroke(4));
 		
-		for (LinkedList<HashMap<String, Integer>> line: lines) {
+		for (MyLine line: lines) {
+			g2d.setColor(line.getColor());
 			for (int i=1; i<line.size(); i++) {
-				HashMap<String, Integer> p0 = line.get(i-1);
-				HashMap<String, Integer> p1 = line.get(i);
-				g2d.drawLine(p0.get("x"), p0.get("y"), p1.get("x"), p1.get("y"));
+				MyPoint p0 = line.getMyPoint(i-1);
+				MyPoint p1 = line.getMyPoint(i);
+				g2d.drawLine(p0.x, p0.y, p1.x, p1.y);
 			}
 		}
 		
@@ -47,12 +47,8 @@ public class MyPainterV2 extends JPanel{
 		@Override
 		public void mousePressed(MouseEvent e) {
 			super.mousePressed(e);
-			LinkedList<HashMap<String, Integer>> line = new LinkedList<>();
-			
-			HashMap<String, Integer> point = new HashMap<>();
-			point.put("x", e.getX());
-			point.put("y", e.getY());
-			line.add(point);
+			MyLine line = new MyLine(nowColor);
+			line.addMyPoint(e.getX(), e.getY());
 			
 			lines.add(line);
 			repaint();
@@ -63,10 +59,7 @@ public class MyPainterV2 extends JPanel{
 		@Override
 		public void mouseDragged(MouseEvent e) {
 			super.mouseDragged(e);
-			HashMap<String, Integer> point = new HashMap<>();
-			point.put("x", e.getX());
-			point.put("y", e.getY());
-			lines.getLast().add(point);
+			lines.getLast().addMyPoint(e.getX(), e.getY());
 			
 			repaint();
 		}

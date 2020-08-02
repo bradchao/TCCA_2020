@@ -12,16 +12,17 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import tw.brad.utils.MyPainter;
+import tw.brad.utils.MyPainterV2;
 
 public class MySign extends JFrame {
-	private MyPainter myPainter;
+	private MyPainterV2 myPainter;
 	private JButton clear, undo, redo, chColor;
 	
 	public MySign() {
 		super("MySign");
 		
 		setLayout(new BorderLayout());
-		myPainter = new MyPainter();
+		myPainter = new MyPainterV2();
 		add(myPainter, BorderLayout.CENTER);
 		
 		clear = new JButton("Clear");
