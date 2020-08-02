@@ -96,4 +96,12 @@ public class MyPainterV2 extends JPanel{
 		repaint();
 	}
 	
+	public LinkedList<MyLine> getLines(){
+		return lines;
+	}
+	
+	public void setLines(LinkedList<MyLine> lines) {
+		this.lines = lines;
+		repaint();
+	}
 }

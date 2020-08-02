@@ -1,9 +1,10 @@
 package tw.brad.utils;
 
 import java.awt.Color;
+import java.io.Serializable;
 import java.util.LinkedList;
 
-public class MyLine {
+public class MyLine implements Serializable {
 	private Color color;
 	private LinkedList<MyPoint> line;
 	
