@@ -14,8 +14,11 @@ import javax.swing.JPanel;
 public class MyPainter extends JPanel{
 	private MyMouseListener myMouseListener;
 	private LinkedList<LinkedList<HashMap<String, Integer>>> lines, recycler;
+	private Color nowColor;
 	
 	public MyPainter() {
+		nowColor = Color.BLUE;
+		
 		lines = new LinkedList<>();
 		recycler = new LinkedList<>();
 		myMouseListener = new MyMouseListener();
@@ -27,7 +30,7 @@ public class MyPainter extends JPanel{
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D)g;
-		g2d.setColor(Color.BLUE);
+		g2d.setColor(nowColor);
 		g2d.setStroke(new BasicStroke(4));
 		
 		for (LinkedList<HashMap<String, Integer>> line: lines) {
@@ -86,6 +89,15 @@ public class MyPainter extends JPanel{
 			lines.add(recycler.removeLast());
 			repaint();
 		}
+	}
+	
+	public Color getColor() {
+		return nowColor;
+	}
+	
+	public void changeColor(Color color) {
+		nowColor = color;
+		repaint();
 	}
 	
 }
