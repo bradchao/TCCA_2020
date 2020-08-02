@@ -2,6 +2,7 @@ package tw.brad.tcca;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
@@ -32,8 +33,15 @@ public class MySQLTest1 {
 			prop.put("serverTimezone", "Asia/Taipei");
 			Connection conn = DriverManager.getConnection(
 					"jdbc:mysql://localhost:8889/tcca",prop);
-			Statement stmt = conn.createStatement();
-			stmt.execute("insert into cust (cname, tel, birthday) values ('tony','321','1999-09-02')");
+//			Statement stmt = conn.createStatement();
+//			stmt.execute("insert into cust (cname, tel, birthday) values ('tony','321','1999-09-02')");
+			
+			PreparedStatement pstmt = conn.prepareStatement(
+					"insert into cust (cname, tel, birthday) values (?,?,?)");
+			pstmt.setString(1, "公會v2");
+			pstmt.setString(2, "04-12345678");
+			pstmt.setString(3, "1999-01-02");
+			pstmt.executeUpdate();
 			
 			System.out.println("OK");
 		} catch (SQLException e) {
