@@ -36,12 +36,25 @@ public class MySQLTest1 {
 //			Statement stmt = conn.createStatement();
 //			stmt.execute("insert into cust (cname, tel, birthday) values ('tony','321','1999-09-02')");
 			
+//			PreparedStatement pstmt = conn.prepareStatement(
+//					"insert into cust (cname, tel, birthday) values (?,?,?)");
+//			pstmt.setString(1, "公會v2");
+//			pstmt.setString(2, "04-12345678");
+//			pstmt.setString(3, "1999-01-02");
+//			pstmt.executeUpdate();
+
+//			PreparedStatement pstmt = conn.prepareStatement(
+//					"delete from cust where id = ?");
+//			pstmt.setInt(1, 3);;
+//			pstmt.executeUpdate();
+
 			PreparedStatement pstmt = conn.prepareStatement(
-					"insert into cust (cname, tel, birthday) values (?,?,?)");
-			pstmt.setString(1, "公會v2");
-			pstmt.setString(2, "04-12345678");
-			pstmt.setString(3, "1999-01-02");
+					"update cust set cname=?, tel=? where id = ?");
+			pstmt.setString(1, "AMY");
+			pstmt.setString(2, "1234");
+			pstmt.setInt(3, 2);
 			pstmt.executeUpdate();
+
 			
 			System.out.println("OK");
 		} catch (SQLException e) {
